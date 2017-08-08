@@ -1,0 +1,22 @@
+.page-footer {
+  background-color: #ea882d;
+}
+button {
+  background-color: rosybrown;
+  color: rosybrown;
+}
+
+h3 {
+  color: #a49c87;
+
+}
+h4 {
+  color: #ea882d;
+}
+
+.danames{
+  display: none;
+}
+img {
+  margin-top: 15px
+}
