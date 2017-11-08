@@ -102,7 +102,6 @@ $('button').click(function() {
 function appendNamesToView (data){
   var nodes = data['data']['repository']['pullRequests']['nodes']
   for (var i = 0; i < nodes.length; i++) {
-    console.log(nodes[i]);
     if (nodes[i]['headRepository'] !== null) {
       for (var j = 0; j < keys.length; j++) {
         if (keys[j] === nodes[i]['headRepository']['owner']['login']) {
