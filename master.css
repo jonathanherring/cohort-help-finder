@@ -1,6 +1,7 @@
 .page-footer {
   background-color: #ea882d;
 }
+
 button {
   background-color: rosybrown;
   color: rosybrown;
@@ -8,15 +9,37 @@ button {
 
 h3 {
   color: #a49c87;
-
 }
+
 h4 {
   color: #ea882d;
 }
 
-.danames{
+.danames {
   display: none;
 }
+
 img {
   margin-top: 15px
+}
+
+.ncards {
+  vertical-align: middle;
+  color: #252525;
+  text-align: center;
+  border-radius: 50px;
+  margin: 10px;
+}
+.lilimg{
+  display: inline-block;
+  margin: 1px;
+  width: 2.5rem;
+  height: auto;
+}
+#tabs {
+  position: relative;
+  float: left;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }

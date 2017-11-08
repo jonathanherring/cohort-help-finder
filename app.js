@@ -37,7 +37,7 @@ sentry.keyup(_.throttle(function() {
 
   var entryVal = $('#entry').val()
   var address = "https://api.github.com/search/repositories?q=";
-  var endString = "+org:gschool+is:private&sort=forks&order=desc"
+  var endString = "+org:gschool&sort=forks&order=desc"
   var bestAddress = address + entryVal + endString
 
 
@@ -46,7 +46,7 @@ sentry.keyup(_.throttle(function() {
       url: bestAddress,
       contentType: "application/json",
       headers: {
-        Authorization: "bearer 87a7c3d4debae568279e4c7eebf3826d86a6dc90"
+        Authorization: "bearer ccd2e2563eb15eb1c6dd248cf7081d3d091d5f04"
       }
 
     })
@@ -73,7 +73,7 @@ $('button').click(function() {
       url: "https://api.github.com/graphql",
       contentType: "application/json",
       headers: {
-        Authorization: "bearer 87a7c3d4debae568279e4c7eebf3826d86a6dc90"
+        Authorization: "bearer ccd2e2563eb15eb1c6dd248cf7081d3d091d5f04"
       },
       data: JSON.stringify({
         query: `query ($entry: String!) {repository(name: $entry, owner: "gschool") {
@@ -83,6 +83,7 @@ $('button').click(function() {
                 headRepository {
                   owner {
                     login
+                    avatarUrl
                   }
                 }
               }
@@ -94,20 +95,23 @@ $('button').click(function() {
         }
       })
     })
-    .done(function(data) {
-      var nodes = data['data']['repository']['pullRequests']['nodes']
-      for (var i = 0; i < nodes.length; i++) {
-        console.log(nodes[i]);
-        if (nodes[i]['headRepository'] !== null) {
-          for (var j = 0; j < keys.length; j++) {
-            if (keys[j] === nodes[i]['headRepository']['owner']['login']) {
-              $daNames.append('<li class="col s12 m6 l6" ><h5>' + g59[keys[j]] + '</h5></li>').fadeIn(500)
-            }
-          }
-        }
-
-      }
-
-    })
+    .done(appendNamesToView(data))
 
 })
+
+function appendNamesToView (data){
+  var nodes = data['data']['repository']['pullRequests']['nodes']
+  for (var i = 0; i < nodes.length; i++) {
+    console.log(nodes[i]);
+    if (nodes[i]['headRepository'] !== null) {
+      for (var j = 0; j < keys.length; j++) {
+        if (keys[j] === nodes[i]['headRepository']['owner']['login']) {
+          var avatar = nodes[i]['headRepository']['owner']['avatarUrl']
+          $daNames.append('<li class="col s12 m12 l12 z-depth-2 ncards row" ><img src="'+ avatar +'" class="circle responsive-img lilimg col s2 m2 l2"><h5 col s11>' + g59[keys[j]] + '</h5></li>').fadeIn(500)
+        }
+      }
+    }
+
+  }
+
+}
