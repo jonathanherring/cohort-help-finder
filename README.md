@@ -1,4 +1,6 @@
 # Github Help Finder
+!(https://github.com/jonathanherring/github-help-finder/blob/master/teachme.gif)
+
 
 
 ## Link
